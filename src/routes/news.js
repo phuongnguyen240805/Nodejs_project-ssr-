@@ -4,7 +4,7 @@
 // const newsController = require('../app/controllers/newsController');
 
 // // get: /course
-// router.use('/course', newsController.course)
+// router.get('/course', newsController.course)
 
 // // get: /
-// router.use('/', newsController.index)
+// router.get('/', newsController.index)

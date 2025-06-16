@@ -1,23 +1,24 @@
 const Course = require('../models/courseModel');
+const { mutipleMongooseToObj } = require('../../util/mongoose');
 class SiteController {
 
     // [GET]: /
     index(req, res) {
         const course = async () => {
             try {
-                const courses = await Course.find({});
-                res.json(courses);
+                let courses = await Course.find({});
+
+                res.render('home', {
+                    layout: 'main',
+                    title: 'Home Page',
+                    courses: mutipleMongooseToObj(courses),
+                });
             } catch (error) {
-                throw new Error(error);
+                next(error);
             }
         };
 
         course();
-
-        res.render('home', {
-            layout: 'main',
-            title: 'Home Page',
-        });
     };
 
     // [GET]: /signup
