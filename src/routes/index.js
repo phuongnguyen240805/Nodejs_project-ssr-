@@ -1,7 +1,7 @@
 const siteRouter = require('./site')
-const newsRouter = require('./news')
+const newsRouter =   require('./news')
 
-function router(app) {
+    function router(app) {
 
     // [GET]: /
     app.use('/', siteRouter);
@@ -10,4 +10,4 @@ function router(app) {
     // app.use('/news', newsRouter)
 };
 
-module.exports = router;
+     module.exports = router;
