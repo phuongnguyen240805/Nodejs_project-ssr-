@@ -8,6 +8,7 @@ class SiteController {
             try {
                 let courses = await Course.find({});
 
+                // render home
                 res.render('home', {
                     layout: 'main',
                     title: 'Home Page',

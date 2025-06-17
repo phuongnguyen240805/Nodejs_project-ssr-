@@ -1,0 +1,26 @@
+<div class="mt-4 course-detail" style="width: 1200px; margin: 0 auto;">
+    <div class="row">
+        <div class="col-3 course-options">
+            <h2>Course Options</h2>
+            <button type="button" class="option-btn btn btn-primary">study now</button>
+            <button type="button" class="option-btn btn btn-secondary">learn</button>
+            <button type="button" class="option-btn btn btn-success">share</button>
+            <button type="button" class="option-btn btn btn-danger">chat</button>
+            <button type="button" class="option-btn btn btn-warning">Warning</button>
+            <button type="button" class="option-btn btn btn-info">Info</button>
+            <button type="button" class="option-btn btn btn-light">Light</button>
+            <button type="button" class="option-btn btn btn-dark">Dark</button>
+        </div>
+
+        <div class="col-9">
+            <h1>{{course.name}}</h1>
+            <div class="video">
+                <iframe width="940" height="530" src="https://www.youtube.com/embed/{{course.videoId}}"
+                    title="Course detail page | Xây dựng trang chi tiết | Thực hành NodeJS" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p class="discription">{{course.description}}</p>
+        </div>
+    </div>
+</div>

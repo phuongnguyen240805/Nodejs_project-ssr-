@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js localhost 8080",
+    "start": "nodemon --inspect=127.0.0.1:2005 src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "sass --watch --no-source-map src/resources/sass:src/public/css"
   },

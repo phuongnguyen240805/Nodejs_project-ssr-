@@ -10,7 +10,7 @@ const db = require('./config/db');
 db.connect();
 
 const app = express();
-const port = 2005;
+const port = 2000;
 
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
