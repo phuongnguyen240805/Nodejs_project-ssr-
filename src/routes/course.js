@@ -12,6 +12,9 @@ router.get('/:id/edit', courseController.edit);
 // put: /course/:id
 router.put('/:id', courseController.update);
 
+// delete: /course/:id
+router.delete('/:id', courseController.destroy);
+
 // get: /course
 router.get('/', courseController.index);
 

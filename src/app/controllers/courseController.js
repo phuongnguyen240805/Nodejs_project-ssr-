@@ -77,6 +77,22 @@ class CourseController {
 
         updateCourse();
     }
+
+    // [DELETE] /course/:id
+    destroy(req, res, next) {
+        const deleteCourse = async () => {
+            try {
+                const backUrl = req.get('Referer') || '/me/stored/courses';
+
+                await Course.deleteOne({ _id: req.params.id }); // delete course by id
+                res.redirect(backUrl); // redirect to the previous page after deleting
+            } catch (error) {
+                next(error);
+            }
+        };
+
+        deleteCourse();
+    }
 };
 
 module.exports = new CourseController;

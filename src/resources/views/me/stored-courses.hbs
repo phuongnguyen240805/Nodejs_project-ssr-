@@ -24,10 +24,63 @@
                     <a href="/courses/{{this._id}}/edit" class="btn btn-primary">Update Course</a>
                 </td>
                 <td>
-                    <a href="/courses/{{this._id}}" class="btn btn-primary">Delete Course</a>
+                    <a href="" data-id="{{this._id}}" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#deleteCourse">Delete Course</a>
                 </td>
             </tr>
             {{/each}}
         </tbody>
     </table>
 </div>
+
+{{!-- confirm madal --}}
+<div class="modal fade" id="deleteCourse" tabindex="-1" aria-labelledby="deleteCourseLabel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete Course</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete this course?</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-delete-course" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- form hidden delete course --}}
+<form name="delete-course-form" method="post"></form>
+
+<script src="https://unpkg.com/wicg-inert@3/dist/inert.min.js"></script>
+<script>
+    const deleteCourse = document.getElementById('deleteCourse');
+    const deleteCourseForm = document.forms['delete-course-form'];
+    const btnDeleteCourse = document.getElementById('btn-delete-course');
+    var idCourse;
+
+
+    window.addEventListener('DOMContentLoaded', function () {
+
+        // get id of course to delete
+        deleteCourse.addEventListener('show.bs.modal', function (event) {
+
+            var button = event.relatedTarget;
+
+            idCourse = button.getAttribute('data-id');
+
+        });
+
+        // delete course
+        btnDeleteCourse.addEventListener('click', function (event) {
+
+            deleteCourseForm.action = `/courses/${idCourse}?_method=delete`;
+            deleteCourseForm.submit();
+
+        });
+
+    });
+</script>
