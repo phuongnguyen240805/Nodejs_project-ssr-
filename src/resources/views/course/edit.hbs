@@ -1,0 +1,26 @@
+<div class="container mt-4">
+    <h2>Update course</h2>
+    {{!-- # Using method-override to handle PUT request --}}
+    <form method="post" action="/courses/{{course._id}}?_method=put">
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Course Name</label>
+            <input value="{{course.name}}" name="name" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Discription</label>
+            <textarea name="description" type="text" class="form-control"
+                id="exampleInputPassword1">{{course.description}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Image</label>
+            <input value="{{course.image}}" name="image" type="text" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Video Id</label>
+            <input value="{{course.videoId}}" name="videoId" type="text" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>

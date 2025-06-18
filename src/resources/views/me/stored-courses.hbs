@@ -1,0 +1,33 @@
+<div class="main-content">
+    <table class="table table-dark table-striped mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Num</th>
+                <th scope="col">Course Image</th>
+                <th scope="col">Course Name</th>
+                <th scope="col">Time</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+            <tr class="align-middle">
+                <th scope="row">{{sum @index 1}}</th>
+                <td>
+                    <img src="{{this.image}}" alt="Course Image" class="img-fluid" style="width: 100px; height: 100px; 
+                        object-fit: contain;">
+                </td>
+                <td>{{this.name}}</td>
+                <td>{{formatDate this.createdAt}}</td>
+                <td>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-primary">Update Course</a>
+                </td>
+                <td>
+                    <a href="/courses/{{this._id}}" class="btn btn-primary">Delete Course</a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>

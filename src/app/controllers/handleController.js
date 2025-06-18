@@ -1,5 +1,5 @@
 const Course = require('../models/courseModel');
-const { mutipleMongooseToObj, mongooseToObj } = require('../../util/mongoose');
+const { mutipleMongooseToObj } = require('../../util/mongoose');
 
 class HandleController {
 
@@ -8,7 +8,7 @@ class HandleController {
         const course = async () => {
             try {
                 const courses = await Course.find({});
-                res.render('dataHandle/show', {
+                res.render('data-handle/show', {
                     layout: 'sub',
                     title: 'Data Handle Page',
                     courses: mutipleMongooseToObj(courses),
@@ -21,8 +21,8 @@ class HandleController {
     }
 
     // [GET] /data_handle/create
-    create(req, res, next) {
-        res.render('dataHandle/create', {
+    create(req, res) {
+        res.render('data-handle/create', {
             layout: 'sub',
             title: 'Create Data Handle Page',
         });

@@ -11,6 +11,26 @@ h1 {
     margin: 0 auto;
 }
 
+.card-title,
+.card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-title {
+    height: 48px;
+    -webkit-line-clamp: 2;
+}
+
+.card-text {
+    height: 72px;
+    -webkit-line-clamp: 3;
+}
+
+// course css
+
 .course-options {
     display: flex;
     flex-direction: column;
@@ -23,5 +43,5 @@ h1 {
     height: 50px;
     display: flex;
     justify-content: center;
-    
+
 }

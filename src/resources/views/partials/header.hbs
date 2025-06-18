@@ -11,14 +11,32 @@
                 <li><a href="/" class="nav-link px-2 text-secondary">Home</a></li>
                 <li><a href="/courses" class="nav-link px-2 text-white">Courses</a></li>
                 <li><a href="/data_handle" class="nav-link px-2 text-white">Data Handle</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
             </ul>
 
-            <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning"><a style="text-decoration: none; color: #666" href="/signup">SignUp</a></button>
+            <div class="dropdown">
+                <button class="btn bg-transition text-white dropdown-toggle" type="button" id="dropdownMenuButton1"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://yt3.ggpht.com/yti/ANjgQV9qnN5jZy31id-tMc6qudR5l-YvpZeZiMhwVHf-JWs=s88-c-k-c0x00ffffff-no-rj"
+                        alt="Avatar" class="rounded-circle me-2" width="30" height="30">
+                    Phuong Nguyen
+                </button>
+                <ul class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="/me/stored/courses">My Courses</a></li>
+                    <li><a class="dropdown-item" href="/me/stored/courses">My Courses</a></li>
+                    <li><a class="dropdown-item" href="/me/stored/courses">My Courses</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="/me/stored/courses">Logout</a></li>
+                </ul>
             </div>
+
+            {{!--login require --}}
+            {{!-- <div class="text-end">
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning"><a style="text-decoration: none; color: #666"
+                        href="/signup">SignUp</a></button>
+            </div> --}}
         </div>
     </div>
 </header>
