@@ -84,7 +84,7 @@ class CourseController {
             try {
                 const backUrl = req.get('Referer') || '/me/stored/courses';
 
-                await Course.deleteOne({ _id: req.params.id }); // delete course by id
+                await Course.delete({ _id: req.params.id }); // soft delete course by id
                 res.redirect(backUrl); // redirect to the previous page after deleting
             } catch (error) {
                 next(error);
@@ -93,6 +93,35 @@ class CourseController {
 
         deleteCourse();
     }
+
+    // [PATCH] /course/:id/restore
+    restore(req, res, next) {
+        const restoreCourse = async () => {
+            try {
+                await Course.restore({ _id: req.params.id }); // restore course by id
+                res.redirect('/me/trash/courses'); // redirect to the trash page after restoring
+            } catch (error) {
+                next(error);
+            }
+        };
+
+        restoreCourse();
+    }
+
+    // [DELETE] /course/:id/force
+    forceDelete(req, res, next) {
+        const forceDeleteCourse = async () => {
+            try {
+                await Course.deleteOne({ _id: req.params.id }); // force delete course by id
+                res.redirect('/me/trash/courses'); // redirect to the trash page after force deleting
+            } catch (error) {
+                next(error);
+            }
+        };
+
+        forceDeleteCourse();
+    }
+
 };
 
 module.exports = new CourseController;

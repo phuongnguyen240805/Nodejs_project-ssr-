@@ -9,6 +9,12 @@ router.get('/:slug', courseController.detail);
 // get: /course/:id/edit
 router.get('/:id/edit', courseController.edit);
 
+// patch: /course/:id/restore
+router.patch('/:id/restore', courseController.restore);
+
+// delete: /course/:id/force
+router.delete('/:id/force', courseController.forceDelete);
+
 // put: /course/:id
 router.put('/:id', courseController.update);
 

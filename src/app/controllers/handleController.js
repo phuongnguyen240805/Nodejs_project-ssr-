@@ -32,8 +32,7 @@ class HandleController {
     store(req, res, next) {
         const addCourse = async () => {
             try {
-                const formData = req.body;
-                const course = new Course(formData);
+                const course = new Course(req.body);
                 await course.save();
                 res.redirect('/data_handle'); // Redirect to the index page after storing the data
             } catch (error) {

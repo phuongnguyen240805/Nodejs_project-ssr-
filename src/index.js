@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const { engine } = require('express-handlebars');
 const path = require('path');
-// Import routes
+const methodOverride = require('method-override');
 const routes = require('./routes');
 const db = require('./config/db');
 
@@ -10,7 +10,7 @@ const db = require('./config/db');
 db.connect();
 
 const app = express();
-const port = 2000;
+const port = 2025;
 
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
@@ -36,14 +36,14 @@ app.engine('hbs', engine({
             });
         },
         // Custom helper to format numbers
-        sum: (a, b) => a + b, 
+        sum: (a, b) => a + b,
+        
     }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Method override for PUT and DELETE requests
-const methodOverride = require('method-override');
 app.use(methodOverride('_method'));
 
 // routes
