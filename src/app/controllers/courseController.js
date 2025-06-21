@@ -1,5 +1,6 @@
 const Course = require('../models/courseModel');
 const { mutipleMongooseToObj, mongooseToObj } = require('../../util/mongoose');
+const { handleCourseAction } = require('../../services/courseActionService');
 
 class CourseController {
 
@@ -122,22 +123,34 @@ class CourseController {
         forceDeleteCourse();
     }
 
-    // [POST] /course/handle-actions-form
-    handleActionsForm(req, res, next) {
+    // [POST] /course/handle-stored-courses
+    handleStoredCourses(req, res, next) {
         const handleActions = async () => {
             try {
                 const action = req.body.action; // get action from form
                 const courseIds = req.body.checkId; // get course ids from form
 
-                switch (action) {
-                    case 'delete':
-                        await Course.delete({ _id: { $in: courseIds } }); // soft delete courses
-                        break;
-                    default:
-                        throw new Error('Invalid action');
-                }
+                handleCourseAction(action, courseIds); // handle the action using the service
 
                 res.redirect('/me/stored/courses'); // redirect to the course index page after handling actions
+            } catch (error) {
+                next(error);
+            }
+        };
+
+        handleActions();
+    }
+
+    // [POST] /course/handle-trash-courses
+    handleTrashCourses(req, res, next) {
+        const handleActions = async () => {
+            try {
+                const action = req.body.action; // get action from form
+                const courseIds = req.body.checkId; // get course ids from form
+
+                handleCourseAction(action, courseIds); // handle the action using the service
+
+                res.redirect('/me/trash/courses'); // redirect to the course index page after handling actions
             } catch (error) {
                 next(error);
             }

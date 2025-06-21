@@ -73,9 +73,14 @@ h1 {
     .course-option {
         height: 100%;
         width: 40%;
+        cursor: pointer;
     }
 
     .btn-apply {
         width: 20%;
     }
+}
+
+.form-check-input {
+    cursor: pointer;
 }
