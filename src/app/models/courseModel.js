@@ -28,4 +28,18 @@ courseSchema.plugin(mongooseDelete, {
   overrideMethods: true,
 });
 
+// custom static method
+courseSchema.statics.countDocumentsDeletedCustom = function () {
+  return this.countDocumentsDeleted({ // custom query to count soft deleted documents
+    deleted: true,
+    deletedAt: { $exists: true },
+  });
+};
+
+courseSchema.statics.findWithDeletedCustom = function () {
+  return this.findWithDeleted({
+    deleted: true,
+  });
+};
+
 module.exports = mongoose.model('Course', courseSchema);

@@ -7,12 +7,16 @@ class MeCourseController {
     index(req, res, next) {
         const course = async () => {
             try {
-                const courses = await Course.find({});
+                const [courses, deleteCount] = await Promise.all([
+                    Course.find({}), // find all courses
+                    Course.countDocumentsDeletedCustom() // count soft deleted courses
+                ]);
                 // render course page
                 res.render('me/stored-courses', {
                     layout: 'main',
                     title: 'Stored Courses Page',
                     courses: mutipleMongooseToObj(courses),
+                    deleteCount,
                 });
             } catch (error) {
                 next(error);
@@ -26,7 +30,7 @@ class MeCourseController {
     trashCourses(req, res, next) {
         const course = async () => {
             try {
-                const courses = await Course.findWithDeleted({ deleted: true }); // find courses that are soft deleted
+                const courses = await Course.findWithDeletedCustom(); // find courses that are soft deleted
                 // render course page
                 res.render('me/trash-courses', {
                     layout: 'main',

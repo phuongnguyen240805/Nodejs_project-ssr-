@@ -78,7 +78,7 @@ class CourseController {
         updateCourse();
     }
 
-    // [DELETE] /course/:id
+    // [DELETE] /course/:id 
     destroy(req, res, next) {
         const deleteCourse = async () => {
             try {
