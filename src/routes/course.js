@@ -9,6 +9,9 @@ router.get('/:slug', courseController.detail);
 // get: /course/:id/edit
 router.get('/:id/edit', courseController.edit);
 
+// post: /course/handle-actions-form
+router.post('/handle-actions-form', courseController.handleActionsForm);
+
 // patch: /course/:id/restore
 router.patch('/:id/restore', courseController.restore);
 

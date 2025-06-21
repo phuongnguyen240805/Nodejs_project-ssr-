@@ -1,10 +1,24 @@
-<div class="main-content">
+<form class="main-content" method="post" action="/courses/handle-actions-form">
     <h1 class="text-start mt-4">My Courses</h1>
     <a href="/me/trash/courses" class="text-start mt-2 trash-num">Trash( {{deleteCount}} )</a>
     {{#if courses}}
+    <div class="course-action align-items-center d-flex">
+        <label class="form-switch checked-all" for="checkbox-all">
+            <input class="form-check-input me-1" id="checkbox-all" type="checkbox" value="">
+            Checked all
+        </label>
+        <select class="course-option" name="action" id="" required>
+            <option value="">-- Actions --</option>
+            <option value="delete">Delete</option>
+        </select>
+        <button class="btn btn-primary btn-apply disabled" type="submit">Apply</button>
+    </div>
+
+    {{!-- course table --}}
     <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Num</th>
                 <th scope="col">Course Image</th>
                 <th scope="col">Course Name</th>
@@ -16,6 +30,9 @@
         <tbody>
             {{#each courses}}
             <tr class="align-middle">
+                <td>
+                    <input name="checkId[]" class="form-check-input me-1" type="checkbox" value="{{this._id}}">
+                </td>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>
                     <img src="{{this.image}}" alt="Course Image" class="img-fluid" style="width: 100px; height: 100px; 
@@ -40,7 +57,7 @@
         <a href="/data_handle/create" class="alert-link">Create a course</a> to get started.
     </div>
     {{/if}}
-</div>
+</form>
 
 {{!-- confirm madal --}}
 <div class="modal fade" id="deleteCourse" tabindex="-1" aria-labelledby="deleteCourseLabel">
@@ -69,6 +86,9 @@
     const deleteCourse = document.getElementById('deleteCourse');
     const deleteCourseForm = document.forms['delete-course-form'];
     const btnDeleteCourse = document.getElementById('btn-delete-course');
+    const checkboxAll = document.getElementById('checkbox-all');
+    const checkItems = document.querySelectorAll('input[name="checkId[]"]');
+    const applyBtn = document.querySelector('.btn-apply');
     var idCourse;
 
 
@@ -90,6 +110,34 @@
             deleteCourseForm.submit();
 
         });
+
+        // select all checkboxes
+        checkboxAll.onchange = function () {
+            const isCheckedAll = this.checked;
+
+            isCheckedAll ? applyBtn.classList.remove('disabled') : applyBtn.classList.add('disabled');
+
+            checkItems.forEach(checkItem => checkItem.checked = isCheckedAll);
+        };
+
+        // Course items checkbox
+        checkItems.forEach(function (checkItem) {
+            checkItem.onchange = function () {
+                const numCheckedItems = document.querySelectorAll('input[name="checkId[]"]:checked');
+                checkboxAll.checked = (checkItems.length == numCheckedItems.length);
+
+                updateApplyButtonState();
+            };
+        });
+
+        // Apply button state
+        function updateApplyButtonState() {
+            const numChecked = document.querySelectorAll('input[name="checkId[]"]:checked').length;
+            const isAnyChecked = numChecked > 0;
+
+            applyBtn.classList.toggle('disabled', !isAnyChecked);
+            applyBtn.disabled = !isAnyChecked;
+        }
 
     });
 </script>

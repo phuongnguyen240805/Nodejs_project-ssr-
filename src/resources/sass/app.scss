@@ -52,3 +52,30 @@ h1 {
     font-weight: bold;
     font-size: 1.2em;
 }
+
+.course-action {
+    height: 37px;
+    width: 40%;
+    margin-top: 20px;
+    justify-content: space-between;
+
+    .checked-all {
+        width: 30%;
+        margin: unset;
+
+        &:hover,
+        input {
+            cursor: pointer;
+        }
+
+    }
+
+    .course-option {
+        height: 100%;
+        width: 40%;
+    }
+
+    .btn-apply {
+        width: 20%;
+    }
+}

@@ -122,6 +122,30 @@ class CourseController {
         forceDeleteCourse();
     }
 
+    // [POST] /course/handle-actions-form
+    handleActionsForm(req, res, next) {
+        const handleActions = async () => {
+            try {
+                const action = req.body.action; // get action from form
+                const courseIds = req.body.checkId; // get course ids from form
+
+                switch (action) {
+                    case 'delete':
+                        await Course.delete({ _id: { $in: courseIds } }); // soft delete courses
+                        break;
+                    default:
+                        throw new Error('Invalid action');
+                }
+
+                res.redirect('/me/stored/courses'); // redirect to the course index page after handling actions
+            } catch (error) {
+                next(error);
+            }
+        };
+
+        handleActions();
+    }
+
 };
 
 module.exports = new CourseController;
